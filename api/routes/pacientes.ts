@@ -16,7 +16,6 @@ const pacienteSchema = z.object({
   endereco: z.string(),
   data_nasc: z.date(),
   cpf: z.string()
-
 })
 
 router.get("/", async (req, res) => {
@@ -88,10 +87,7 @@ router.post("/", async (req, res) => {
     return
   }
 
-  // 12 é o número de voltas (repetições) que o algoritmo faz
-  // para gerar o salt (sal/tempero)
   const salt = bcrypt.genSaltSync(12)
-  // gera o hash da senha acrescida do salt
   const hash = bcrypt.hashSync(valida.data.senha, salt)
  
   const { nome, email, fone, endereco, data_nasc, cpf } = valida.data
@@ -105,5 +101,18 @@ router.post("/", async (req, res) => {
     res.status(400).json(error)
   }
 })
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params
+  try {
+    const paciente = await prisma.paciente.findUnique({
+      where: { id }
+    })
+    res.status(200).json(paciente)
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
 
 export default router

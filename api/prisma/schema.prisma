@@ -28,7 +28,7 @@ model Profissional {
 }
 
 model Paciente {
-  id                   Int            @id @default(autoincrement()) 
+  id                   String         @id @db.VarChar(36) @default(uuid()) 
   nome                 String         @db.VarChar(100)
   email                String         @unique @db.VarChar(100)
   senha                String         @db.VarChar(50)
@@ -44,7 +44,7 @@ model Paciente {
 
 model Consulta {
   id                   Int            @id @default(autoincrement()) 
-  id_paciente          Int            
+  id_paciente          String            
   id_profissional      Int            
   data                 DateTime       @db.Date
   hora                 DateTime       @db.Time(6)

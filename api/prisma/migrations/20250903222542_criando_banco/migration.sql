@@ -27,7 +27,7 @@ CREATE TABLE "profissionais" (
 
 -- CreateTable
 CREATE TABLE "pacientes" (
-    "id" SERIAL NOT NULL,
+    "id" VARCHAR(36) NOT NULL,
     "nome" VARCHAR(100) NOT NULL,
     "email" VARCHAR(100) NOT NULL,
     "senha" VARCHAR(50) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE "pacientes" (
 -- CreateTable
 CREATE TABLE "consultas" (
     "id" SERIAL NOT NULL,
-    "id_paciente" INTEGER NOT NULL,
+    "id_paciente" TEXT NOT NULL,
     "id_profissional" INTEGER NOT NULL,
     "data" DATE NOT NULL,
     "hora" TIME(6) NOT NULL,
