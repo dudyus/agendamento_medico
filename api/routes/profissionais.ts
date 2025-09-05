@@ -119,8 +119,8 @@ router.get("/pesquisa/:termo", async (req, res) => {
         },
         where: {
           OR: [
-            { nome: { contains: termo } },
-            { funcao: { nome_funcao: { equals: termo } } }
+            { nome: { contains: termo, mode: "insensitive" } },
+            { funcao: { nome_funcao: {contains: termo, mode: "insensitive" } } }
           ]
         }
       })
