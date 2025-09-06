@@ -16,8 +16,8 @@ export default function Titulo() {
         }
     }
     return (
-<nav className="bg-blue-900 ">
-  <div className=" flex justify-between p-4">
+<nav className="bg-blue-900">
+  <div className=" flex justify-between items-center p-4 h-20">
     <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="./logo2.webp" className="h-8" alt="Logo" />
         <span className="text-2xl font-semibold text-white">Agendamento Médico</span>
