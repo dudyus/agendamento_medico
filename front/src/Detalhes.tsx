@@ -94,8 +94,7 @@ export default function Detalhes() {
               <option value="PRESENCIAL">Presencial</option>
               <option value="ONLINE">Online</option>
             </select>
-            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto 
-            px-5 py-2.5 text-center">Marcar Consulta
+            <button type="submit" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-1 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Marcar Consulta
             </button>
           </form>
           ) : (
