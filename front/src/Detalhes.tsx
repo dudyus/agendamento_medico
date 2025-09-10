@@ -2,13 +2,20 @@ import type { ProfissionalType } from "./utils/ProfissionalType"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { usePacienteStore } from "./context/PacienteContext"
+import { useForm } from "react-hook-form"
+import { toast } from 'sonner'
 
 const apiUrl = import.meta.env.VITE_API_URL
+
+type Inputs = {
+  descricao: string
+}
 
 export default function Detalhes() {
   const { profissionalId } = useParams()
   const [profissional, setProfissional] = useState<ProfissionalType>()
   const { paciente } = usePacienteStore()
+  const { register, handleSubmit, reset } = useForm<Inputs>()
 
   useEffect(() => {
     async function buscaDados() {
@@ -22,6 +29,32 @@ export default function Detalhes() {
 
     buscaDados()
   }, [profissionalId])
+
+    async function enviaConsulta(data: Inputs) {
+
+    const response = await fetch(`${apiUrl}/consultas`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        id_paciente: paciente.id,
+        id_profissional: Number(profissionalId),
+        data: new Date(),
+        hora: new Date(), 
+        tipo: , 
+        admin_id: Number(),
+        descricao: data.descricao
+      })
+    })
+
+    if (response.status == 201) {
+      toast.success("Obrigado. Sua proposta foi enviada. Aguarde retorno")
+      reset()
+    } else {
+      toast.error("Erro... Não foi possível enviar sua proposta")
+    }
+  }
 
   return (
     <section className="flex mt-6 mx-auto flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-5xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">

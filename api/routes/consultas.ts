@@ -1,6 +1,8 @@
 import { PrismaClient, Status } from "@prisma/client"
 import { Router } from "express"
 import { z } from 'zod'
+import { Tipo } from "@prisma/client"
+
 
 const prisma = new PrismaClient()
 const router = Router()
@@ -9,8 +11,8 @@ const consultaSchema = z.object({
   id_paciente: z.string(),
   id_profissional: z.number(),
   data: z.string(), 
-  hora: z.string(), 
-  tipo: z.string().min(3, { message: "Tipo da consulta deve possuir no mínimo 3 caracteres" }),
+  hora: z.string(),
+  tipo: z.nativeEnum(Tipo).optional(),
   confirmada: z.boolean().optional(),
   admin_id: z.number()
 })
