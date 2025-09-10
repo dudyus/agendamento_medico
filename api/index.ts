@@ -4,6 +4,7 @@ import routesFuncoes from './routes/funcoes'
 import routesProfissionais from './routes/profissionais'
 import routesPacientes from './routes/pacientes'
 import routesLogin from './routes/login'
+import routesConsultas from './routes/consultas'
 
 const app = express()
 const port = 3000
@@ -15,6 +16,7 @@ app.use("/funcoes", routesFuncoes)
 app.use("/profissionais", routesProfissionais)
 app.use("/pacientes", routesPacientes)
 app.use("/pacientes/login", routesLogin)
+app.use("/consultas", routesConsultas)
 
 app.get('/', (req, res) => {
   res.send('API: Agendamento Médico')
