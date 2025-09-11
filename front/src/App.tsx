@@ -13,24 +13,19 @@ export default function App() {
   
 
   useEffect(() => {
-    async function buscaDados() {
-      const response = await fetch(`${apiUrl}/profissionais`)
-      const dados = await response.json()
-      // console.log(dados)
-      setProfissionais(dados)
-    }
-    buscaDados()
+  async function buscaDados() {
+    const response = await fetch(`${apiUrl}/profissionais`)
+    const dados = await response.json()
+    setProfissionais(dados)
+  }
+  buscaDados()
 
-    async function buscaPaciente(id: string) {
-      const response = await fetch(`${apiUrl}/pacientes/${id}`)
-      const dados = await response.json()
-      logaPaciente(dados)
-    }
-    if (localStorage.getItem("pacienteKey")) {
-      const idPaciente = localStorage.getItem("pacienteKey")
-      buscaPaciente(idPaciente as string)
-    }    
-  }, [])
+  // Recupera paciente do localStorage
+  const pacienteSalvo = localStorage.getItem("paciente")
+  if (pacienteSalvo) {
+    logaPaciente(JSON.parse(pacienteSalvo))
+  }
+}, [])
 
   const listaProfissionais = profissionais.map( profissional => (
     <CardProf data={profissional} key={profissional.id} />

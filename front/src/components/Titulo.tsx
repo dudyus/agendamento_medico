@@ -8,11 +8,9 @@ export default function Titulo() {
 
     function pacienteSair() {
         if (confirm("Confirma saída do sistema?")) {
-            deslogaPaciente()
-            if (localStorage.getItem("pacienteKey")) {
-                localStorage.removeItem("pacienteKey")
-            }
-            navigate("/login")
+            deslogaPaciente() // limpa o estado global
+            localStorage.removeItem("paciente") // remove do storage
+            navigate("/login") // volta para a tela de login
         }
     }
     return (
@@ -27,7 +25,10 @@ export default function Titulo() {
         <a href="/" className="block py-2 px-3 text-white font-semibold rounded-sm" aria-current="page">Home</a>
       </li>
       <li>
-        <Link to="/propostas" className="block py-2 px-3 text-white font-semibold rounded-sm">Minhas Consultas</Link>
+        <a href="http://localhost:3000/consultas" className="block py-2 px-3 text-white font-semibold rounded-sm" target="_blank"// opcional: abre em nova aba
+          rel="noopener noreferrer">Minhas Consultas
+        </a>
+        {/* <Link to="/consultas" className="block py-2 px-3 text-white font-semibold rounded-sm">Minhas Consultas</Link> */}
       </li>
       </ul>
     <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
