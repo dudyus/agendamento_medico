@@ -8,6 +8,7 @@ import Detalhes  from './Detalhes.tsx'
 
 import Layout from './Layout.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Consultas from './components/Consultas.tsx' 
 
 const rotas = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const rotas = createBrowserRouter([
       { index: true, element: <App /> },
       { path: 'login', element: <Login /> },
       { path: 'detalhes/:profissionalId', element: <Detalhes /> },
+      { path: 'consultas', element: <Consultas /> },
     ],
   },
 ])
