@@ -45,12 +45,32 @@ router.get("/profissionaisFuncao", async (req, res) => {
   }
 })
 
-type ClienteGroupByCidade = {
-  cidade: string
+type ConsultaGroupByTipo = {
+  tipo: string
   _count: {
-    cidade: number
+    tipo: number
   }
 }
+
+router.get("/consultasTipo", async (req, res) => {
+  try {
+    const consultas = await prisma.consulta.groupBy({
+      by: ['tipo'],
+      _count: {
+        tipo: true,
+      },
+    })
+
+    const consultas2 = consultas.map((consulta: ConsultaGroupByTipo) => ({
+      tipo: consulta.tipo,
+      num: consulta._count.tipo
+    }))
+
+    res.status(200).json(consultas2)
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
 
 // router.get("/clientesCidade", async (req, res) => {
 //   try {

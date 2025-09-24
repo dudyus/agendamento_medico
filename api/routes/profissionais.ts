@@ -36,11 +36,10 @@ router.get("/destaques", async (req, res) => {
     const profissionais = await prisma.profissional.findMany({
       include: {
         funcao: true,
-      }
-      // ,
-      // where: {
-      //   destaque: true // add destaque na model prof.
-      // }
+      },
+       where: {
+         destaque: true 
+       }
     })
     res.status(200).json(profissionais)
   } catch (error) {
