@@ -22,7 +22,7 @@ model Profissional {
   ano_inicio_carreira Int             
   foto                String?
   id_funcao           Int             
-  destaque            Boolean         
+  destaque            Boolean         @default(true)
   admin_id            String?         @db.VarChar(36) 
   admin               Admin?          @relation(fields: [admin_id], references: [id])
   funcao              Funcao          @relation(fields: [id_funcao], references: [id])
@@ -71,7 +71,7 @@ model Admin {
   senha                String         @db.VarChar(60)
   nivel                Int            @db.SmallInt @default(2)
   created_at           DateTime       @default(now()) @db.Timestamp(6)
-  updated_at           DateTime       @updatedAt @db.Timestamp(6)
+  updated_at           DateTime       @default(now())@updatedAt @db.Timestamp(6)
   consultas            Consulta[]
   profissionais        Profissional[]
   @@map("admins")
