@@ -14,7 +14,7 @@ const consultaSchema = z.object({
   hora: z.string(),
   tipo: z.nativeEnum(Tipo).optional(),
   confirmada: z.boolean().optional(),
-  admin_id: z.number()
+  admin_id: z.string()
 })
 
 router.get("/", async (req, res) => {

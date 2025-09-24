@@ -13,6 +13,7 @@ const profissionalSchema = z.object({
   genero: z.nativeEnum(Genero),
   ano_inicio_carreira: z.number(),
   foto: z.string(),
+  destaque: z.boolean(),
   id_funcao: z.number()
 
 })
@@ -72,12 +73,12 @@ router.post("/", async (req, res) => {
     return
   }
 
-  const { nome, idade, genero, ano_inicio_carreira, foto, id_funcao } = valida.data
+  const { nome, idade, genero, ano_inicio_carreira, foto, destaque, id_funcao } = valida.data
 
   try {
     const profissional = await prisma.profissional.create({
       data: {
-        nome, idade, genero, ano_inicio_carreira, foto, id_funcao
+        nome, idade, genero, ano_inicio_carreira, foto, destaque, id_funcao
       }
     })
     res.status(201).json(profissional)
