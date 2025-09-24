@@ -30,6 +30,23 @@ router.get("/", async (req, res) => {
   }
 })
 
+router.get("/destaques", async (req, res) => {
+  try {
+    const profissionais = await prisma.profissional.findMany({
+      include: {
+        funcao: true,
+      }
+      // ,
+      // where: {
+      //   destaque: true // add destaque na model prof.
+      // }
+    })
+    res.status(200).json(profissionais)
+  } catch (error) {
+    res.status(500).json({ erro: error })
+  }
+})
+
 router.get("/:id", async (req, res) => {
   const { id } = req.params
 
