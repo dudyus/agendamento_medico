@@ -50,7 +50,7 @@ export default function Detalhes() {
           data: new Date(data.data),
           hora: new Date(`${data.data}T${data.hora}`),
           tipo: data.tipo,
-          admin_id: 1
+          admin_id: "1"
         })
       })
 
