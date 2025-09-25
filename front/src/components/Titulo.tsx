@@ -27,7 +27,7 @@ export default function Titulo() {
         <a href="/" className="block py-2 px-3 text-white font-semibold rounded-sm" aria-current="page">Home</a>
       </li>
       <li>
-        <Link to="/propostas" className="block py-2 px-3 text-white font-semibold rounded-sm">Minhas Consultas</Link>
+        <Link to="/consultas" className="block py-2 px-3 text-white font-semibold rounded-sm">Minhas Consultas</Link>
       </li>
       </ul>
     <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
