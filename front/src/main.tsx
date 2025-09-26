@@ -7,6 +7,9 @@ import Detalhes  from './Detalhes.tsx'
 import Layout from './Layout.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Consultas from './components/Consultas.tsx' 
+import AdminLogin from './admin/AdminLogin.tsx'
+import AdminDashboard from './admin/AdminDashboard.tsx'
+
 
 const rotas = createBrowserRouter([
   {
@@ -19,6 +22,15 @@ const rotas = createBrowserRouter([
       { path: 'consultas', element: <Consultas /> },
     ],
   },
+  {
+    path: '/admin/login',
+    element: <AdminLogin />,
+  },
+  {
+    path: '/admin',
+    element: <AdminDashboard />
+  }
+
 ])
 
 createRoot(document.getElementById('root')!).render(
