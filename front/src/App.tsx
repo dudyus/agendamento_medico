@@ -9,7 +9,15 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 export default function App() {
   const [profissionais, setProfissionais] = useState<ProfissionalType[]>([])
-  const { logaPaciente} = usePacienteStore()
+  const { logaPaciente, paciente } = usePacienteStore()
+
+
+  useEffect(() => {
+    if (!paciente?.id) {
+      const stored = localStorage.getItem("paciente")
+      if (stored) logaPaciente(JSON.parse(stored))
+    }
+  }, [])
   
 
   useEffect(() => {

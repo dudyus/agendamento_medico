@@ -6,9 +6,18 @@ type PacienteStore = {
     logaPaciente: (pacienteLogado: PacienteType) => void
     deslogaPaciente: () => void
 }
+const pacienteInicial = JSON.parse(localStorage.getItem('paciente') || '{}') as PacienteType
 
 export const usePacienteStore = create<PacienteStore>((set) => ({
-    paciente: {} as PacienteType,
-    logaPaciente: (pacienteLogado) => set({paciente: pacienteLogado}),
-    deslogaPaciente: () => set({paciente: {} as PacienteType})
+  paciente: pacienteInicial, 
+
+  logaPaciente: (pacienteLogado) => {
+    localStorage.setItem('paciente', JSON.stringify(pacienteLogado)) 
+    set({ paciente: pacienteLogado })
+  },
+
+  deslogaPaciente: () => {
+    localStorage.removeItem('paciente')
+    set({ paciente: {} as PacienteType })
+  }
 }))

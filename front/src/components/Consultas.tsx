@@ -13,8 +13,15 @@ type Consulta = {
 
 export default function Consultas() {
   const [consultas, setConsultas] = useState<Consulta[]>([]);
-  const { paciente } = usePacienteStore(); // pega o paciente logado
+  const { logaPaciente, paciente } = usePacienteStore(); // pega o paciente logado
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!paciente?.id) {
+      const stored = localStorage.getItem("paciente")
+      if (stored) logaPaciente(JSON.parse(stored))
+    }
+  }, [])
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/consultas`)
