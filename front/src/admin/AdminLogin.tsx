@@ -40,7 +40,7 @@ export default function AdminLogin() {
 
   return (
     <main className="max-w-screen-xl flex flex-col items-center mx-auto p-6">
-      <img src="../../fusca.png" alt="Revenda" style={{ width: 240 }}
+      <img src="../../logo2.webp" alt="Clinica" style={{ width: 240 }}
         className="d-block" />
       <div className="max-w-sm">
         <h1 className="text-3xl font-bold my-8">Admin: Clinica</h1>
@@ -58,7 +58,8 @@ export default function AdminLogin() {
               {...register("senha")}
               required />
           </div>
-          <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Entrar</button>
+          <button type="submit" className="w-full text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-1 focus:outline-none focus:ring-blue-300 
+          font-medium rounded-lg text-sm px-5 py-2.5 text-center">Entrar</button>
         </form>
       </div>
       <Toaster richColors position="top-right" />
