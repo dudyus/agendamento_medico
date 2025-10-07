@@ -9,20 +9,14 @@ type graficoFuncaoType = {
   num: number
 }
 
-// type graficoPacienteType = {
-//   cidade: string
-//   num: number
-// }
-
 type geralDadosType = {
   pacientes: number
-  profissional: number
-  propostas: number
+  profissionais: number
+  consultas: number
 }
 
 export default function AdminDashboard() {
   const [profFuncao, setprofFuncao] = useState<graficoFuncaoType[]>([])
-  //const [pacientesCidade, setpacientesCidade] = useState<graficoPacienteType[]>([])
   const [dados, setDados] = useState<geralDadosType>({} as geralDadosType)
 
   useEffect(() => {
@@ -40,22 +34,12 @@ export default function AdminDashboard() {
     }
     getDadosGraficoFuncao()
 
-    // async function getDadosGraficopaciente() {
-    //   const response = await fetch(`${apiUrl}/dashboard/pacientesCidade`)
-    //   const dados = await response.json()
-    //   setpacientesCidade(dados)
-    // }
-    // getDadosGraficopaciente()
-
   }, [])
 
   const listaprofFuncao = profFuncao.map(item => (
     { x: item.Funcao, y: item.num }
   ))
 
-  // const listapacientesCidade = pacientesCidade.map(item => (
-  //   { x: item.cidade, y: item.num }
-  // ))
 
   return (
     <div className="container mt-24">
@@ -65,17 +49,17 @@ export default function AdminDashboard() {
         <div className="border-blue-600 border rounded p-6 w-1/3 me-3">
           <span className="bg-blue-100 text-blue-800 text-xl text-center font-bold mx-auto block px-2.5 py-5 rounded dark:bg-blue-900 dark:text-blue-300">
             {dados.pacientes}</span>
-          <p className="font-bold mt-2 text-center">Nº pacientes</p>
+          <p className="font-bold mt-2 text-center">Pacientes Cadastrados</p>
         </div>
         <div className="border-red-600 border rounded p-6 w-1/3 me-3">
           <span className="bg-red-100 text-red-800 text-xl text-center font-bold mx-auto block px-2.5 py-5 rounded dark:bg-red-900 dark:text-red-300">
-            {dados.profissional}</span>
-          <p className="font-bold mt-2 text-center">Nº Consulta</p>
+            {dados.profissionais}</span>
+          <p className="font-bold mt-2 text-center">Profisionais Cadastrados</p>
         </div>
         <div className="border-green-600 border rounded p-6 w-1/3">
           <span className="bg-green-100 text-green-800 text-xl text-center font-bold mx-auto block px-2.5 py-5 rounded dark:bg-green-900 dark:text-green-300">
-            {dados.propostas}</span>
-          <p className="font-bold mt-2 text-center">Nº Propostas</p>
+            {dados.consultas}</span>
+          <p className="font-bold mt-2 text-center">Consultas Agendadas</p>
         </div>
       </div>
 
@@ -108,42 +92,9 @@ export default function AdminDashboard() {
             }}
             x={200}
             y={200}
-            text={["Veículos", "por Funcao"]}
+            text={["Profissionais", "por Funcao"]}
           />
         </svg>
-
-        {/* <svg viewBox="30 55 400 400">
-          <VictoryPie
-            standalone={false}
-            width={400}
-            height={400}
-            data={listapacientesCidade}
-            innerRadius={50}
-            labelRadius={80}
-            theme={VictoryTheme.clean}
-            style={{
-              labels: {
-                fontSize: 10,
-                fill: "#fff",
-                fontFamily: "Arial",
-                fontWeight: "bold"
-              }
-            }}
-          />
-          <VictoryLabel
-            textAnchor="middle"
-            style={{
-              fontSize: 12,
-              fill: "#f00",
-              fontFamily: "Arial",
-              fontWeight: "bold"
-            }}
-            x={200}
-            y={200}
-            text={["pacientes", "por Cidade"]}
-          />
-        </svg> */}
-
       </div>
     </div>
   )
