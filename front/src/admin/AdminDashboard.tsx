@@ -5,7 +5,12 @@ import { VictoryPie, VictoryLabel, VictoryTheme } from "victory";
 const apiUrl = import.meta.env.VITE_API_URL
 
 type graficoFuncaoType = {
-  Funcao: string
+  funcao: string
+  num: number
+}
+
+type graficoConsultaType = {
+  tipo: string,
   num: number
 }
 
@@ -17,6 +22,7 @@ type geralDadosType = {
 
 export default function AdminDashboard() {
   const [profFuncao, setprofFuncao] = useState<graficoFuncaoType[]>([])
+  const [consultaTipo, setconsultaTipo] = useState<graficoConsultaType[]>([])
   const [dados, setDados] = useState<geralDadosType>({} as geralDadosType)
 
   useEffect(() => {
@@ -28,16 +34,27 @@ export default function AdminDashboard() {
     getDadosGerais()
 
     async function getDadosGraficoFuncao() {
-      const response = await fetch(`${apiUrl}/dashboard/profFuncao`)
+      const response = await fetch(`${apiUrl}/dashboard/profissionaisFuncao`)
       const dados = await response.json()
       setprofFuncao(dados)
     }
     getDadosGraficoFuncao()
 
+    async function getDadosGraficoConsulta() {
+      const response = await fetch(`${apiUrl}/dashboard/consultaTipo`)
+      const dados = await response.json()
+      setconsultaTipo(dados)
+    }
+    getDadosGraficoConsulta()
+
   }, [])
 
   const listaprofFuncao = profFuncao.map(item => (
-    { x: item.Funcao, y: item.num }
+    { x: item.funcao, y: item.num }
+  ))
+  
+  const listaconsultatipo = consultaTipo.map(item => (
+    { x: item.tipo, y: item.num }
   ))
 
 
@@ -95,6 +112,40 @@ export default function AdminDashboard() {
             text={["Profissionais", "por Funcao"]}
           />
         </svg>
+
+        <svg viewBox="30 55 400 400">
+          <VictoryPie
+            standalone={false}
+            width={400}
+            height={400}
+            data={listaconsultatipo}
+            innerRadius={50}
+            labelRadius={80}
+            theme={VictoryTheme.clean}
+            style={{
+              labels: {
+                fontSize: 10,
+                fill: "#fff",
+                fontFamily: "Arial",
+                fontWeight: "bold"
+              }
+            }}
+          />
+          <VictoryLabel
+            textAnchor="middle"
+            style={{
+              fontSize: 12,
+              fill: "#f00",
+              fontFamily: "Arial",
+              fontWeight: "bold"
+            }}
+            x={200}
+            y={200}
+            text={["Consultas", "por Tipo"]}
+          />
+        </svg>
+
+
       </div>
     </div>
   )
