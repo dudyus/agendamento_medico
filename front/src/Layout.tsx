@@ -1,4 +1,4 @@
-import Titulo from './components/Titulo.tsx'
+import Titulo from './admin/components/Titulo.tsx'
 import { Outlet } from 'react-router-dom'
 import { Toaster} from 'sonner'
 
