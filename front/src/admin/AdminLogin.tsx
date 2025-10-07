@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { Toaster, toast } from 'sonner'
-import { useAdminStore } from "../context/AdminContext"
+import { useAdminStore } from "../admin/context/AdminContext"
 
 import { useNavigate } from "react-router-dom"
 
@@ -28,7 +28,6 @@ export default function AdminLogin() {
       body: JSON.stringify({ email: data.email, senha: data.senha })
     })
 
-    // console.log(response)
     if (response.status == 200) {
       const admin = await response.json()
       logaAdmin(admin)

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
-import { usePacienteStore } from "../context/PacienteContext"
+import { usePacienteStore } from "../../context/PacienteContext"
 import { useNavigate } from "react-router-dom"
-import { useAdminStore } from "../context/AdminContext"
+import { useAdminStore } from "../../admin/context/AdminContext"
 import { FiUsers } from "react-icons/fi"
 
 export default function Titulo() {
@@ -22,13 +22,11 @@ export default function Titulo() {
   return (
     <nav className="bg-blue-900 shadow-md">
       <div className="flex justify-between items-center p-4 h-20 max-w-screen-xl mx-auto">
-        {/* Logo + Título */}
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="./logo2.webp" className="h-8" alt="Logo" />
           <span className="text-2xl font-semibold text-white">Agendamento Médico</span>
         </Link>
 
-        {/* Links principais */}
         <ul className="hidden md:flex p-4 font-semibold space-x-8">
           <li>
             <Link
@@ -48,17 +46,13 @@ export default function Titulo() {
           </li>
         </ul>
 
-        {/* Usuário logado ou botão de login */}
         <div className="flex items-center space-x-4">
-          {/* Admin */}
           {admin?.nome && (
             <div className="flex items-center text-white font-bold">
               <FiUsers className="mr-2" />
               {admin.nome}
             </div>
           )}
-
-          {/* Paciente */}
           {paciente.id ? (
             <div className="flex items-center">
               <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">

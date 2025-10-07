@@ -34,7 +34,7 @@ export function MenuLateral() {
               <span className="h-5 text-gray-600 text-2xl">
                 <FaCarSide />
               </span>
-              <span className="ms-2 mt-1">Cadastro de Consulta</span>
+              <span className="ms-2 mt-1">Cadastro de Consultas</span>
             </Link>
           </li>
           <li>
@@ -42,7 +42,7 @@ export function MenuLateral() {
               <span className="h-5 text-gray-600 text-2xl">
                 <FaUsers />
               </span>
-              <span className="ms-2 mt-1">Controle de Clientes</span>
+              <span className="ms-2 mt-1">Controle de Pacientes</span>
             </Link>
           </li>
           <li>
@@ -50,7 +50,7 @@ export function MenuLateral() {
               <span className="h-5 text-gray-600 text-2xl">
                 <BsCashCoin />
               </span>
-              <span className="ms-2 mt-1">Controle de Propostas</span>
+              <span className="ms-2 mt-1">Controle de Consultas</span>
             </Link>
           </li>
 

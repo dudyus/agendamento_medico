@@ -41,7 +41,7 @@ export default function AdminDashboard() {
     getDadosGraficoFuncao()
 
     async function getDadosGraficoConsulta() {
-      const response = await fetch(`${apiUrl}/dashboard/consultaTipo`)
+      const response = await fetch(`${apiUrl}/dashboard/consultasTipo`)
       const dados = await response.json()
       setconsultaTipo(dados)
     }
