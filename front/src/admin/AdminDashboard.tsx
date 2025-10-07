@@ -4,25 +4,25 @@ import { VictoryPie, VictoryLabel, VictoryTheme } from "victory";
 
 const apiUrl = import.meta.env.VITE_API_URL
 
-type graficoMarcaType = {
-  marca: string
+type graficoFuncaoType = {
+  Funcao: string
   num: number
 }
 
-type graficoClienteType = {
-  cidade: string
-  num: number
-}
+// type graficoPacienteType = {
+//   cidade: string
+//   num: number
+// }
 
 type geralDadosType = {
-  clientes: number
-  carros: number
+  pacientes: number
+  profissional: number
   propostas: number
 }
 
 export default function AdminDashboard() {
-  const [carrosMarca, setCarrosMarca] = useState<graficoMarcaType[]>([])
-  const [clientesCidade, setClientesCidade] = useState<graficoClienteType[]>([])
+  const [profFuncao, setprofFuncao] = useState<graficoFuncaoType[]>([])
+  //const [pacientesCidade, setpacientesCidade] = useState<graficoPacienteType[]>([])
   const [dados, setDados] = useState<geralDadosType>({} as geralDadosType)
 
   useEffect(() => {
@@ -33,29 +33,29 @@ export default function AdminDashboard() {
     }
     getDadosGerais()
 
-    async function getDadosGraficoMarca() {
-      const response = await fetch(`${apiUrl}/dashboard/carrosMarca`)
+    async function getDadosGraficoFuncao() {
+      const response = await fetch(`${apiUrl}/dashboard/profFuncao`)
       const dados = await response.json()
-      setCarrosMarca(dados)
+      setprofFuncao(dados)
     }
-    getDadosGraficoMarca()
+    getDadosGraficoFuncao()
 
-    async function getDadosGraficoCliente() {
-      const response = await fetch(`${apiUrl}/dashboard/clientesCidade`)
-      const dados = await response.json()
-      setClientesCidade(dados)
-    }
-    getDadosGraficoCliente()
+    // async function getDadosGraficopaciente() {
+    //   const response = await fetch(`${apiUrl}/dashboard/pacientesCidade`)
+    //   const dados = await response.json()
+    //   setpacientesCidade(dados)
+    // }
+    // getDadosGraficopaciente()
 
   }, [])
 
-  const listaCarrosMarca = carrosMarca.map(item => (
-    { x: item.marca, y: item.num }
+  const listaprofFuncao = profFuncao.map(item => (
+    { x: item.Funcao, y: item.num }
   ))
 
-  const listaClientesCidade = clientesCidade.map(item => (
-    { x: item.cidade, y: item.num }
-  ))
+  // const listapacientesCidade = pacientesCidade.map(item => (
+  //   { x: item.cidade, y: item.num }
+  // ))
 
   return (
     <div className="container mt-24">
@@ -64,12 +64,12 @@ export default function AdminDashboard() {
       <div className="w-2/3 flex justify-between mx-auto mb-5">
         <div className="border-blue-600 border rounded p-6 w-1/3 me-3">
           <span className="bg-blue-100 text-blue-800 text-xl text-center font-bold mx-auto block px-2.5 py-5 rounded dark:bg-blue-900 dark:text-blue-300">
-            {dados.clientes}</span>
-          <p className="font-bold mt-2 text-center">Nº Clientes</p>
+            {dados.pacientes}</span>
+          <p className="font-bold mt-2 text-center">Nº pacientes</p>
         </div>
         <div className="border-red-600 border rounded p-6 w-1/3 me-3">
           <span className="bg-red-100 text-red-800 text-xl text-center font-bold mx-auto block px-2.5 py-5 rounded dark:bg-red-900 dark:text-red-300">
-            {dados.carros}</span>
+            {dados.profissional}</span>
           <p className="font-bold mt-2 text-center">Nº Consulta</p>
         </div>
         <div className="border-green-600 border rounded p-6 w-1/3">
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
             standalone={false}
             width={400}
             height={400}
-            data={listaCarrosMarca}
+            data={listaprofFuncao}
             innerRadius={50}
             labelRadius={80}
             theme={VictoryTheme.clean}
@@ -108,16 +108,16 @@ export default function AdminDashboard() {
             }}
             x={200}
             y={200}
-            text={["Veículos", "por Marca"]}
+            text={["Veículos", "por Funcao"]}
           />
         </svg>
 
-        <svg viewBox="30 55 400 400">
+        {/* <svg viewBox="30 55 400 400">
           <VictoryPie
             standalone={false}
             width={400}
             height={400}
-            data={listaClientesCidade}
+            data={listapacientesCidade}
             innerRadius={50}
             labelRadius={80}
             theme={VictoryTheme.clean}
@@ -140,9 +140,9 @@ export default function AdminDashboard() {
             }}
             x={200}
             y={200}
-            text={["Clientes", "por Cidade"]}
+            text={["pacientes", "por Cidade"]}
           />
-        </svg>
+        </svg> */}
 
       </div>
     </div>
