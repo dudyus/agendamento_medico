@@ -35,15 +35,8 @@ const rotas = createBrowserRouter([
       { path: 'login', element: <Login /> },
       { path: 'detalhes/:profissionalId', element: <Detalhes /> },
       { path: 'consultas', element: <Consultas /> },
+      { path: 'cadPaciente', element: <CadPaciente /> },
     ],
-  },
-  {
-    path: '/admin/login',
-    element: <AdminLogin />,
-  },
-  {
-    path: '/admin',
-    element: <AdminDashboard />
   }
 
 ])
