@@ -22,7 +22,7 @@ export default function App() {
 
   useEffect(() => {
     async function buscaDados() {
-      const response = await fetch(`${apiUrl}/profissionais`)
+      const response = await fetch(`${apiUrl}/profissionais/destaques`)
       const dados = await response.json()
       // console.log(dados)
       setProfissionais(dados)

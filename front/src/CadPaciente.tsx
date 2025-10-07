@@ -5,17 +5,16 @@ import { toast } from "sonner"
 type Inputs = {
     nome: string
     email: string
-    cidade: string
     senha: string
     senha2: string
 }
 
 const apiUrl = import.meta.env.VITE_API_URL
 
-export default function CadCliente() {
+export default function CadPaciente() {
     const { register, handleSubmit } = useForm<Inputs>()
 
-    async function cadastraCliente(data: Inputs) {
+    async function cadastraPaciente(data: Inputs) {
 
         if (data.senha != data.senha2) {
             toast.error("Erro... Senha e Confirme Senha precisam ser iguais")
@@ -23,12 +22,11 @@ export default function CadCliente() {
         }
 
         const response = await
-            fetch(`${apiUrl}/clientes`, {
+            fetch(`${apiUrl}/pacientes`, {
                 headers: { "Content-Type": "application/json" },
                 method: "POST",
                 body: JSON.stringify({
                     nome: data.nome,
-                    cidade: data.cidade,
                     email: data.email,
                     senha: data.senha
                 })
@@ -37,8 +35,6 @@ export default function CadCliente() {
         console.log(response)
         if (response.status == 201) {
             toast.success("Ok! Cadastro realizado com sucesso...")
-            // carrega a página principal, após login do cliente
-            // navigate("/login")
         } else {
             toast.error("Erro... Não foi possível realizar o cadastro")
         }
@@ -50,10 +46,10 @@ export default function CadCliente() {
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                            Cadastro de Cliente
+                            Cadastro de paciente
                         </h1>
                         <form className="space-y-4 md:space-y-6" 
-                          onSubmit={handleSubmit(cadastraCliente)}>
+                          onSubmit={handleSubmit(cadastraPaciente)}>
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
                                 <input type="text" id="nome" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Seu nome completo" required 
@@ -63,11 +59,6 @@ export default function CadCliente() {
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail:</label>
                                 <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="nome@gmail.com" required 
                                     {...register("email")} />
-                            </div>
-                            <div>
-                                <label htmlFor="cidade" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cidade:</label>
-                                <input type="text" id="cidade" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sua cidade" required 
-                                    {...register("cidade")} />
                             </div>
                             <div>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha de Acesso:</label>
