@@ -8,6 +8,8 @@ import routesConsultas from './routes/consultas'
 import routesAdminLogin from './routes/adminLogin'
 import routesAdmins from './routes/admins'
 import routesDashboard from './routes/dashboard'
+import dotenv from 'dotenv'
+
 
 const app = express()
 const port = 3000

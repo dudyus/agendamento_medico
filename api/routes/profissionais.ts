@@ -1,6 +1,8 @@
 import { Genero, PrismaClient } from '@prisma/client'
 import { Router } from 'express'
 import { z } from 'zod'
+import { verificaToken } from '../middlewares/verificaToken'
+
 
 const prisma = new PrismaClient()
 
@@ -149,5 +151,25 @@ router.get("/pesquisa/:termo", async (req, res) => {
     res.status(400).json({ erro: "Pesquisa numérica não implementada"})
   }
 })
+
+router.patch("/destacar/:id", verificaToken, async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const profissionalDestacar = await prisma.profissional.findUnique({
+      where: { id: Number(id) },
+      select: { destaque: true }, 
+    });
+
+    const profissional = await prisma.profissional.update({
+      where: { id: Number(id) },
+      data: { destaque: !profissionalDestacar?.destaque }
+    })
+    res.status(200).json(profissional)
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
 
 export default router
