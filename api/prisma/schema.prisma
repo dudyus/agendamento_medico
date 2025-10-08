@@ -57,7 +57,8 @@ model Consulta {
   confirmada           Boolean        @default(false)
   created_at           DateTime       @default(now()) @db.Timestamp(6)
   updated_at           DateTime       @updatedAt @db.Timestamp(6)
-  admin_id             String?        @db.VarChar(36) 
+  admin_id             String?        @db.VarChar(36)
+  ativo                Boolean        @default(true)
   paciente             Paciente       @relation(fields: [id_paciente], references: [id])
   profissional         Profissional   @relation(fields: [id_profissional], references: [id])
   admin                Admin?         @relation(fields: [admin_id], references: [id])
@@ -74,8 +75,21 @@ model Admin {
   updated_at           DateTime       @default(now())@updatedAt @db.Timestamp(6)
   consultas            Consulta[]
   profissionais        Profissional[]
+  logs                 Log[]
   @@map("admins")
 }
+
+model Log {
+  id            Int         @id @default(autoincrement())
+  admin         Admin       @relation(fields: [adminId], references: [id])
+  adminId       String      @db.VarChar(36)
+  descricao     String      @db.VarChar(60)
+  complemento   String      @db.VarChar(200)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  @@map("logs")
+}
+
 
 enum Genero {
   MASCULINO

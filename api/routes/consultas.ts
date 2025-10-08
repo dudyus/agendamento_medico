@@ -50,6 +50,9 @@ async function enviaEmail(consulta: Consulta, nomePaciente: string, emailPacient
 router.get("/", async (req, res) => {
   try {
     const consultas = await prisma.consulta.findMany({
+      where: {
+        ativo: true,
+      },
       include: {
         paciente: true,
         profissional: true,
