@@ -11,7 +11,8 @@ import Consultas from './components/Consultas.tsx'
 import AdminLogin from './admin/AdminLogin.tsx'
 import AdminDashboard from './admin/AdminDashboard.tsx'
 import AdminLayout from './admin/AdminLayout.tsx';            
-import AdminConsultas from './admin/AdminConsultas.tsx'; 
+import AdminProf from './admin/AdminProf.tsx'; 
+import AdminControleConsultas from './admin/AdminControleConsultas.tsx'
 
 
 const rotas = createBrowserRouter([
@@ -24,7 +25,8 @@ const rotas = createBrowserRouter([
     element: <AdminLayout />,  // layout principal do admin com menus e outlet
     children: [
       { index: true, element: <AdminDashboard /> },     // rota /admin
-      { path: "controle-consultas", element: <AdminConsultas /> },     // rota /admin/carros
+      { path: "cadastro-profissionais", element: <AdminProf /> },     // rota /admin/carros
+      { path: "controle-consultas", element: <AdminControleConsultas /> },     // rota /admin/carros
     ],
   },
   {
