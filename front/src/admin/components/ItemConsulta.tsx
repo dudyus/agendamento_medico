@@ -10,34 +10,34 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 export default function ItemConsulta({ consulta, consultas, setConsultas }: Props) {
 
-  async function cancelarConsulta() {
-    if (!confirm(`Tem certeza que deseja cancelar a consulta de ${consulta.paciente.nome}?`)) return
+  async function confirmarConsulta() {
+    if (!confirm(`Confirmar consulta de ${consulta.paciente.nome}?`)) return
 
     try {
       const response = await fetch(`${apiUrl}/consultas/${consulta.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ confirmada: false })
+        body: JSON.stringify({ confirmada: true }),
       })
 
       if (!response.ok) {
-        alert("Erro ao cancelar consulta")
+        alert("Erro ao confirmar consulta")
         return
       }
 
       const atualizada = await response.json()
 
-      // Atualiza a lista local
       const novaLista = consultas.map(c =>
-        c.id === atualizada.id ? { ...c, confirmada: false } : c
+        c.id === atualizada.id ? { ...c, confirmada: true } : c
       )
       setConsultas(novaLista)
-      alert("Consulta cancelada com sucesso!")
+      alert("Consulta confirmada com sucesso!")
     } catch (err) {
       console.error(err)
       alert("Erro de conexão com o servidor")
     }
   }
+
 
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -49,16 +49,16 @@ export default function ItemConsulta({ consulta, consultas, setConsultas }: Prop
         {consulta.confirmada ? (
           <span className="text-green-600 font-semibold">Confirmada</span>
         ) : (
-          <span className="text-red-600 font-semibold">Cancelada</span>
+          <span className="text-red-600 font-semibold">Não Confirmada</span>
         )}
       </td>
       <td className="px-6 py-4">
-        {consulta.confirmada && (
+        {!consulta.confirmada && (
           <button
-            onClick={cancelarConsulta}
-            className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md"
+            onClick={confirmarConsulta}
+            className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md"
           >
-            Cancelar
+            Confirmar
           </button>
         )}
       </td>

@@ -41,16 +41,16 @@ export default function AdminProf() {
                 Foto
               </th>
               <th scope="col" className="px-6 py-3">
-                Modelo do profissional
+                Nome do profissional
               </th>
               <th scope="col" className="px-6 py-3">
                 Função
               </th>
               <th scope="col" className="px-6 py-3">
-                Ano
+                Ano de Inicio de Carreira
               </th>
               <th scope="col" className="px-6 py-3">
-                Preço R$
+                Idade
               </th>
               <th scope="col" className="px-6 py-3">
                 Ações

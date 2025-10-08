@@ -30,11 +30,11 @@ export function MenuLateral() {
             </Link>
           </li>
           <li>
-            <Link to="/admin/" className="flex items-center p-2">
+            <Link to="/admin/cadastro-profissionais" className="flex items-center p-2">
               <span className="h-5 text-gray-600 text-2xl">
                 <FaCarSide />
               </span>
-              <span className="ms-2 mt-1">Cadastro de Consultas</span>
+              <span className="ms-2 mt-1">Cadastro de Profissionais</span>
             </Link>
           </li>
           <li>

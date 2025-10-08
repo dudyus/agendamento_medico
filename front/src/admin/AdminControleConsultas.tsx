@@ -1,67 +1,61 @@
+import { useEffect, useState } from "react"
+import ItemConsulta from "./components/ItemConsulta"
 import type { ConsultaType } from "../utils/ConsultaType"
-
-interface Props {
-  consulta: ConsultaType
-  consultas: ConsultaType[]
-  setConsultas: React.Dispatch<React.SetStateAction<ConsultaType[]>>
-}
 
 const apiUrl = import.meta.env.VITE_API_URL
 
-export default function ItemConsulta({ consulta, consultas, setConsultas }: Props) {
+export default function AdminControleConsultas() {
+  const [consultas, setConsultas] = useState<ConsultaType[]>([])
 
-  async function cancelarConsulta() {
-    if (!confirm(`Tem certeza que deseja cancelar a consulta de ${consulta.paciente.nome}?`)) return
-
-    try {
-      const response = await fetch(`${apiUrl}/consultas/${consulta.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ confirmada: false })
-      })
-
-      if (!response.ok) {
-        alert("Erro ao cancelar consulta")
-        return
+  useEffect(() => {
+    async function fetchConsultas() {
+      try {
+        const response = await fetch(`${apiUrl}/consultas`)
+        if (!response.ok) {
+          alert("Erro ao buscar consultas")
+          return
+        }
+        const dados = await response.json()
+        setConsultas(dados)
+      } catch (error) {
+        console.error(error)
+        alert("Erro de conexão com o servidor")
       }
-
-      const atualizada = await response.json()
-
-      // Atualiza a lista local
-      const novaLista = consultas.map(c =>
-        c.id === atualizada.id ? { ...c, confirmada: false } : c
-      )
-      setConsultas(novaLista)
-      alert("Consulta cancelada com sucesso!")
-    } catch (err) {
-      console.error(err)
-      alert("Erro de conexão com o servidor")
     }
-  }
+    fetchConsultas()
+  }, [])
+
+  const listaConsultas = consultas.map((consulta) => (
+    <ItemConsulta
+      key={consulta.id}
+      consulta={consulta}
+      consultas={consultas}
+      setConsultas={setConsultas}
+    />
+  ))
 
   return (
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-      <td className="px-6 py-4">{consulta.paciente.nome}</td>
-      <td className="px-6 py-4">{consulta.profissional.nome}</td>
-      <td className="px-6 py-4">{new Date(consulta.data).toLocaleDateString()}</td>
-      <td className="px-6 py-4">{consulta.hora}</td>
-      <td className="px-6 py-4">
-        {consulta.confirmada ? (
-          <span className="text-green-600 font-semibold">Confirmada</span>
-        ) : (
-          <span className="text-red-600 font-semibold">Cancelada</span>
-        )}
-      </td>
-      <td className="px-6 py-4">
-        {consulta.confirmada && (
-          <button
-            onClick={cancelarConsulta}
-            className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md"
-          >
-            Cancelar
-          </button>
-        )}
-      </td>
-    </tr>
+    <div className="m-4 mt-24">
+      <h1 className="mb-4 text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
+        Controle de Consultas
+      </h1>
+
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th className="px-6 py-3">Paciente</th>
+              <th className="px-6 py-3">Profissional</th>
+              <th className="px-6 py-3">Data</th>
+              <th className="px-6 py-3">Hora</th>
+              <th className="px-6 py-3">Status</th>
+              <th className="px-6 py-3">Confirmação</th>
+              <th className="px-6 py-3">Ações</th>
+            </tr>
+          </thead>
+          <tbody>{listaConsultas}</tbody>
+        </table>
+      </div>
+    </div>
   )
 }
