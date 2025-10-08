@@ -30,7 +30,7 @@ export function MenuLateral() {
             </Link>
           </li>
           <li>
-            <Link to="/admin/carros" className="flex items-center p-2">
+            <Link to="/admin/" className="flex items-center p-2">
               <span className="h-5 text-gray-600 text-2xl">
                 <FaCarSide />
               </span>
@@ -38,7 +38,7 @@ export function MenuLateral() {
             </Link>
           </li>
           <li>
-          <Link to="/admin/clientes" className="flex items-center p-2">
+          <Link to="/admin/cadPaciente" className="flex items-center p-2">
               <span className="h-5 text-gray-600 text-2xl">
                 <FaUsers />
               </span>
@@ -46,7 +46,7 @@ export function MenuLateral() {
             </Link>
           </li>
           <li>
-          <Link to="/admin/propostas" className="flex items-center p-2 cursor-pointer">
+          <Link to="/admin/controle-consultas" className="flex items-center p-2 cursor-pointer">
               <span className="h-5 text-gray-600 text-2xl">
                 <BsCashCoin />
               </span>

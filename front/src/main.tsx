@@ -24,7 +24,7 @@ const rotas = createBrowserRouter([
     element: <AdminLayout />,  // layout principal do admin com menus e outlet
     children: [
       { index: true, element: <AdminDashboard /> },     // rota /admin
-      { path: "consultas", element: <AdminConsultas /> },     // rota /admin/carros
+      { path: "controle-consultas", element: <AdminConsultas /> },     // rota /admin/carros
     ],
   },
   {
