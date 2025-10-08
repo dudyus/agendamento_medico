@@ -6,6 +6,7 @@ export type ProfissionalType = {
   idade: number             
   genero: string
   ano_inicio_carreira: number  
+  destaque: boolean
   foto: string          
   id_funcao: number           
   funcao: FuncaoType }          
