@@ -4,7 +4,7 @@ import { FaRegStar } from "react-icons/fa"
 import type { ProfissionalType } from "../../utils/ProfissionalType"
 import { useAdminStore } from "../context/AdminContext"
 
-interface listaCarroProps {
+type listaCarroProps = {
   profissional: ProfissionalType;
   profissionais: ProfissionalType[];
   setProfissionais: React.Dispatch<React.SetStateAction<ProfissionalType[]>>;
