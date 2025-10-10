@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
 import { toast } from "sonner"
 
 type Inputs = {
@@ -71,9 +70,6 @@ export default function CadPaciente() {
                                       {...register("senha2")} />
                             </div>
                             <button type="submit" className="w-full text-white bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-400 dark:hover:bg-amber-500 dark:focus:ring-amber-800">Criar sua Conta</button>
-                            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Já possui uma conta? <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Faça Login</Link>
-                            </p>
                         </form>
                     </div>
                 </div>

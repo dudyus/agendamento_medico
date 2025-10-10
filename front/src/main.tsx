@@ -29,6 +29,7 @@ const rotas = createBrowserRouter([
       { path: "cadastro-profissionais", element: <AdminProf /> },     // rota /admin/carros
       { path: "controle-consultas", element: <AdminControleConsultas /> },     // rota /admin/carros
       { path: "profissionais/novo", element: <AdminNovoProf /> },     // rota /admin/carros
+      { path: 'cadPaciente', element: <CadPaciente /> },
     ],
   },
   {
@@ -39,7 +40,6 @@ const rotas = createBrowserRouter([
       { path: 'login', element: <Login /> },
       { path: 'detalhes/:profissionalId', element: <Detalhes /> },
       { path: 'consultas', element: <Consultas /> },
-      { path: 'cadPaciente', element: <CadPaciente /> },
     ],
   }
 
