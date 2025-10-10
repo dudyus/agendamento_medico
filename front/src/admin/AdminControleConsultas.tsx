@@ -48,7 +48,6 @@ export default function AdminControleConsultas() {
               <th className="px-6 py-3">Profissional</th>
               <th className="px-6 py-3">Data</th>
               <th className="px-6 py-3">Hora</th>
-              <th className="px-6 py-3">Status</th>
               <th className="px-6 py-3">Confirmação</th>
               <th className="px-6 py-3">Ações</th>
             </tr>

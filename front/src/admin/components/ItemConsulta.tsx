@@ -84,7 +84,7 @@ export default function ItemConsulta({ consulta, consultas, setConsultas }: Prop
         )}
         <button
           onClick={excluirConsulta}
-          className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md"
+          className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md ml-2"
         >
           Excluir
         </button>
