@@ -18,8 +18,11 @@ export function MenuLateral() {
   }
 
   return (
-    <aside id="default-sidebar" className="fixed mt-24 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-      <div className="h-full px-3 py-4 overflow-y-auto bg-blue-300 dark:bg-gray-800">
+<aside
+  id="default-sidebar"
+  className="w-64 h-auto bg-blue-300 dark:bg-gray-800"
+  aria-label="Sidebar"
+>      <div className="h-full px-3 py-4 bg-blue-300 dark:bg-gray-800 ">
         <ul className="space-y-2 font-medium">
         <li>
             <Link to="/admin" className="flex items-center p-2">

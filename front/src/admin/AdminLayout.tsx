@@ -27,9 +27,11 @@ export default function AdminLayout() {
   return (
     <>
       <Titulo />
-      <MenuLateral />
-      <div className="p-4 sm:ml-64">
-        <Outlet />
+      <div className="flex min-h-screen">
+        <MenuLateral />
+        <div className="flex-1 p-4 bg-gray-100 ">
+          <Outlet />
+        </div>
       </div>
       <Toaster richColors position="top-right" />
     </>

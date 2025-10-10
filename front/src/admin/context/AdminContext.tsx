@@ -1,4 +1,4 @@
-import type { AdminType } from '../utils/AdminType'
+import type { AdminType } from '../../utils/AdminType'
 import { create } from 'zustand'
 
 type AdminStore = {
