@@ -37,7 +37,28 @@ export default function ItemConsulta({ consulta, consultas, setConsultas }: Prop
       alert("Erro de conexão com o servidor")
     }
   }
+  async function excluirConsulta() {
+    if (!confirm(`Tem certeza que deseja excluir a consulta de ${consulta.paciente.nome}?`)) return
 
+    try {
+      const response = await fetch(`${apiUrl}/consultas/${consulta.id}`, {
+        method: "DELETE",
+      })
+
+      if (!response.ok) {
+        alert("Erro ao excluir a consulta")
+        return
+      }
+
+      // Remove a consulta da lista local
+      const novaLista = consultas.filter(c => c.id !== consulta.id)
+      setConsultas(novaLista)
+      alert("Consulta excluída com sucesso!")
+    } catch (err) {
+      console.error(err)
+      alert("Erro de conexão com o servidor")
+    }
+  }
 
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -61,6 +82,12 @@ export default function ItemConsulta({ consulta, consultas, setConsultas }: Prop
             Confirmar
           </button>
         )}
+        <button
+          onClick={excluirConsulta}
+          className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md"
+        >
+          Excluir
+        </button>
       </td>
     </tr>
   )

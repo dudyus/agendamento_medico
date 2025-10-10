@@ -138,4 +138,28 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const consulta = await prisma.consulta.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!consulta) {
+      return res.status(404).json({ erro: "Consulta não encontrada" });
+    }
+
+    await prisma.consulta.delete({
+      where: { id: Number(id) },
+    });
+
+    return res.status(204).send();
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ erro: "Erro ao excluir a consulta" });
+  }
+});
+
+
 export default router
