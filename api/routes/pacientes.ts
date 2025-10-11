@@ -14,7 +14,7 @@ const pacienteSchema = z.object({
   senha: z.string(),
   fone: z.string(),
   endereco: z.string(),
-  data_nasc: z.date(),
+  data_nasc: z.coerce.date(),
   cpf: z.string()
 })
 
