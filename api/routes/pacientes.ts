@@ -114,4 +114,17 @@ router.get("/:id", async (req, res) => {
   }
 })
 
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const paciente = await prisma.paciente.delete({
+      where: { id: String(id) }
+    })
+    res.status(200).json(paciente)
+  } catch (error) {
+    res.status(400).json({ erro: error })
+  }
+})
+
 export default router
