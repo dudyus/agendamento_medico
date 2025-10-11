@@ -27,10 +27,11 @@ export default function AdminPaciente() {
         <h1 className="mb-4 text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
           Cadastro de pacientes
         </h1>
-        <Link to="/admin/pacientes/novo" 
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-md px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-          Novo paciente
-        </Link>
+        <Link
+  to="/admin/pacientes/novo"
+  className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-1 focus:outline-none focus:ring-blue-300 text-white font-medium rounded px-4 py-1.5 text-sm mb-4">
+  Novo paciente
+</Link>
       </div>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
