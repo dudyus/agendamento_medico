@@ -82,6 +82,10 @@ export default function ItemPaciente({ paciente, pacientes, setPacientes }: list
       <td className={`px-6 py-4`}>
         {paciente.cpf}
       </td>
+      <td className={`px-6 py-4`}>
+        {paciente.data_nasc}
+      </td>
+      
       <td className="px-6 py-4">
         <TiDeleteOutline className="text-3xl text-red-600 inline-block cursor-pointer" title="Excluir"
           onClick={excluirPaciente} />&nbsp;

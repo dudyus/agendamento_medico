@@ -14,6 +14,7 @@ import AdminProf from './admin/AdminProf.tsx';
 import AdminControleConsultas from './admin/AdminControleConsultas.tsx'
 import AdminNovoProf from './admin/AdminNovoProf.tsx'
 import AdminNovoPaciente from './admin/AdminNovoPaciente.tsx'
+import AdminPaciente from './admin/AdminPaciente.tsx'
 
 
 const rotas = createBrowserRouter([
@@ -27,9 +28,10 @@ const rotas = createBrowserRouter([
     children: [
       { index: true, element: <AdminDashboard /> },     // rota /admin
       { path: "cadastro-profissionais", element: <AdminProf /> },     // rota /admin/carros
-      { path: "controle-consultas", element: <AdminControleConsultas /> },     // rota /admin/carros
       { path: "profissionais/novo", element: <AdminNovoProf /> },     // rota /admin/carros
-      { path: 'cadastro-pacientes', element: <AdminNovoPaciente /> },
+      { path: "controle-consultas", element: <AdminControleConsultas /> },     // rota /admin/carros
+      { path: 'cadastro-pacientes', element: <AdminPaciente /> },
+      { path: 'pacientes/novo', element: <AdminNovoPaciente /> }
     ],
   },
   {
