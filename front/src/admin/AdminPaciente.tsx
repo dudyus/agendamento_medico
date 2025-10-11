@@ -44,9 +44,6 @@ export default function AdminPaciente() {
                 Email
               </th>
               <th scope="col" className="px-6 py-3">
-                Senha
-              </th>
-              <th scope="col" className="px-6 py-3">
                 Fone
               </th>
               <th scope="col" className="px-6 py-3">
@@ -57,6 +54,9 @@ export default function AdminPaciente() {
               </th>
               <th scope="col" className="px-6 py-3">
                 Data de nascimento
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Ações 
               </th>
             </tr>
           </thead>
