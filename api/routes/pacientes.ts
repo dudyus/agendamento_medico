@@ -127,4 +127,51 @@ router.delete("/:id", async (req, res) => {
   }
 })
 
+router.patch("/:id", async (req, res) => {
+  const { id } = req.params
+
+  try {
+    // valida os campos que vierem
+    const dados = pacienteSchema.partial().safeParse(req.body)
+    if (!dados.success) {
+      return res.status(400).json({ erro: dados.error })
+    }
+
+    const pacienteExistente = await prisma.paciente.findUnique({
+      where: { id: String(id) }
+    })
+
+    if (!pacienteExistente) {
+      return res.status(404).json({ erro: "Paciente não encontrado" })
+    }
+
+    let novaSenha = pacienteExistente.senha
+
+    // Se o usuário quiser atualizar a senha
+    if (dados.data.senha) {
+      const erros = validaSenha(dados.data.senha)
+      if (erros.length > 0) {
+        return res.status(400).json({ erro: erros.join("; ") })
+      }
+
+      const salt = bcrypt.genSaltSync(12)
+      novaSenha = bcrypt.hashSync(dados.data.senha, salt)
+    }
+
+    const pacienteAtualizado = await prisma.paciente.update({
+      where: { id: String(id) },
+      data: {
+        ...dados.data,
+        senha: novaSenha, // garante que senha atualizada (ou antiga) seja usada
+      },
+    })
+
+    res.status(200).json(pacienteAtualizado)
+  } catch (error) {
+    console.error(error)
+    res.status(400).json({ erro: "Erro ao atualizar paciente" })
+  }
+})
+
+
 export default router
