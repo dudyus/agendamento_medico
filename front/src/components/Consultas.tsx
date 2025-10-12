@@ -36,12 +36,20 @@ export default function Consultas() {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Minhas Consultas</h1>
       <ul>
-        {consultas.map((c) => (
+        {consultas.map((c) => {
+          const dataFormatada = new Date(c.data).toLocaleDateString("pt-BR")
+          const horaFormatada = new Date(c.hora).toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+
+        return (
           <li key={c.id} className="mb-2 border p-2 rounded">
-            {c.data} {c.hora} - {c.profissional.nome}
+            {dataFormatada} {horaFormatada} - {c.profissional.nome}
           </li>
-        ))}
-      </ul>
+        )
+  })}
+</ul>
     </div>
   );
 }
