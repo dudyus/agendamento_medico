@@ -1,6 +1,6 @@
 import './AdminDashboard.css'
 import { useEffect, useState } from "react";
-import { VictoryPie, VictoryLabel, VictoryTheme } from "victory";
+import { VictoryPie, VictoryLabel, VictoryTheme, VictoryTooltip  } from "victory";
 
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -81,7 +81,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="div-graficos">
-        <svg viewBox="30 55 400 400">
+        <svg viewBox="0 55 400 400">
           <VictoryPie
             standalone={false}
             width={400}
@@ -90,13 +90,19 @@ export default function AdminDashboard() {
             innerRadius={50}
             labelRadius={80}
             theme={VictoryTheme.clean}
+            labels={({ datum }) => `${datum.x}: ${datum.y}`} // o texto dentro das fatias
+            labelComponent={
+              <VictoryTooltip
+                style={{ fontSize: 12, fontWeight: "bold" }}
+                flyoutStyle={{
+                  fill: "#ffffffff", // fundo
+                  stroke: "#000000ff", // borda
+                  strokeWidth: 1,
+                }}
+              />
+            }
             style={{
-              labels: {
-                fontSize: 10,
-                fill: "#fff",
-                fontFamily: "Arial",
-                fontWeight: "bold"
-              }
+              labels: { fill: "transparent" }, // esconde os nomes
             }}
           />
           <VictoryLabel
