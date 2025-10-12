@@ -65,7 +65,10 @@ export default function ItemConsulta({ consulta, consultas, setConsultas }: Prop
       <td className="px-6 py-4">{consulta.paciente.nome}</td>
       <td className="px-6 py-4">{consulta.profissional.nome}</td>
       <td className="px-6 py-4">{new Date(consulta.data).toLocaleDateString()}</td>
-      <td className="px-6 py-4">{consulta.hora}</td>
+      <td className="px-6 py-4">{new Date(consulta.hora).toLocaleTimeString("pt-BR", 
+      {   hour: "2-digit",
+          minute: "2-digit",})}
+      </td>
       <td className="px-6 py-4">
         {consulta.confirmada ? (
           <span className="text-green-600 font-semibold">Confirmada</span>
