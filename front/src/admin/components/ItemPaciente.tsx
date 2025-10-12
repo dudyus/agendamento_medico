@@ -91,7 +91,10 @@ export default function ItemPaciente({ paciente, pacientes, setPacientes }: list
         <td className="px-6 py-4">{paciente.fone}</td>
         <td className="px-6 py-4">{paciente.endereco}</td>
         <td className="px-6 py-4">{paciente.cpf}</td>
-        <td className="px-6 py-4">{paciente.data_nasc}</td>
+        <td className="px-6 py-4">{paciente.data_nasc ? 
+        new Date(paciente.data_nasc).toLocaleDateString("pt-BR", {
+        timeZone: "UTC" }) : ""}
+        </td>
         
         <td className="px-6 py-4 flex gap-2">
           <FiEdit
