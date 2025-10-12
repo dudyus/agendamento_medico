@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { Toaster, toast } from 'sonner'
 import { useAdminStore } from "../admin/context/AdminContext"
+import { usePacienteStore } from "../context/PacienteContext"
 
 import { useNavigate } from "react-router-dom"
 
@@ -16,6 +17,7 @@ export default function AdminLogin() {
   const { register, handleSubmit, setFocus } = useForm<Inputs>()
   const navigate = useNavigate()
   const { logaAdmin } = useAdminStore()
+  const { deslogaPaciente } = usePacienteStore()
 
   useEffect(() => {
     setFocus("email")
@@ -30,8 +32,13 @@ export default function AdminLogin() {
 
     if (response.status == 200) {
       const admin = await response.json()
+      localStorage.removeItem("paciente")
+
+      deslogaPaciente()
+
       logaAdmin(admin)
       navigate("/admin", { replace: true })
+
     } else if (response.status == 400) {
       toast.error("Erro... Login ou senha incorretos")
     }

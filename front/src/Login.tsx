@@ -30,6 +30,8 @@ export default function Login() {
             // toast.success("Ok!")            
             const dados = await response.json()
 
+            localStorage.removeItem("admin")
+
             logaPaciente(dados)
             localStorage.setItem("paciente", JSON.stringify(dados))
             navigate("/")
