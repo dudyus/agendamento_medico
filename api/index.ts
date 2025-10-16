@@ -29,6 +29,3 @@ app.get('/', (req, res) => {
   res.send('API: Agendamento Médico')
 })
 
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta: ${port}`)
-})
