@@ -3,6 +3,9 @@ import { Router } from "express"
 import { z } from 'zod'
 import { Tipo } from "@prisma/client"
 import nodemailer from 'nodemailer'
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 
 const prisma = new PrismaClient()
@@ -19,8 +22,7 @@ const consultaSchema = z.object({
 })
 
 async function enviaEmail(consulta: Consulta, nomePaciente: string, emailPaciente: string) {
-  // só envia se a consulta NÃO estiver confirmada
-  if (consulta.confirmada) return;
+  if (!consulta.confirmada) return;
 
   const transporter = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
@@ -36,11 +38,11 @@ async function enviaEmail(consulta: Consulta, nomePaciente: string, emailPacient
     from: 'agendamentoMedico@gmail.com', 
     to: emailPaciente, 
     subject: "Atualização sobre sua consulta", 
-    text: `Sua consulta agendada para ${consulta.data.toLocaleDateString()} às ${consulta.hora.toLocaleTimeString()} foi cancelada.`,
+    text: `Sua consulta agendada para ${consulta.data.toLocaleDateString()} às ${consulta.hora.toLocaleTimeString()} foi confirmada.`,
     html: `<h3>Estimado Paciente: ${nomePaciente}</h3>
            <h3>Consulta Agendada: ${consulta.data.toLocaleDateString()} às ${consulta.hora.toLocaleTimeString()}</h3>
-           <h3>Status: Cancelada</h3>
-           <p>Lamentamos informar que sua consulta foi cancelada. Por favor, entre em contato para reagendar.</p>
+           <h3>Status: CONFIRMADA</h3>
+           <p>Sua consulta está confirmada, por favor compareça na nossa clínica.</p>
            <p>Clinica de Agendamento Médico</p>`
   });
 
@@ -123,7 +125,7 @@ router.patch("/:id", async (req, res) => {
       include: { paciente: true }
     });
 
-    if (!confirmada && dadosConsulta) {
+    if (confirmada && dadosConsulta) {
       await enviaEmail(
         dadosConsulta,
         dadosConsulta.paciente.nome,
